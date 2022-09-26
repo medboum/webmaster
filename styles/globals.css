@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@Layer base {
+
+ 
+  @font-face {
+    font-family: 'Rubik';
+    src: url('../public/fonts/Rubik-Dirt-Regular.woff2') format('woff2');
+    font-weight:400;
+    font-display:swap;
+    font-style:normal
+  }
+  @font-face {
+    font-family: 'Teko';
+    src: url('../public/fonts/Teko-Regular.woff2') format('woff2');
+    font-weight:400;
+    font-display:swap;
+    font-style:normal
+  }
+  @font-face {
+    font-family: 'Bungee';
+    src: url('../public/fonts/Bungee-Shade.woff2') format('woff2');
+    font-weight:400;
+    font-display:swap;
+    font-style:normal
+  }}
+
+html,
+/* body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+} */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+
+}
