@@ -16,6 +16,7 @@ export default function Product({ photo, details, prix, options }) {
               loader={GraphCMSImageLoader}
               src={photo}
               width={200}
+              
               height={200}
             />
           </div>

@@ -19,6 +19,10 @@ const getAllUsers = () => {
     headers: authHeader(),
   })
 }
+const  addFav=(id,profile)=> {
+  return axios.post(`http://localhost:128/addToWishlist/${id}/${profile}`)
+  
+}
 
 const getMyProduit = () => {
   return axios.get('http://localhost:128/getMyProduit', {
@@ -37,6 +41,7 @@ const USerService = {
   getRole,
   getAllUsers,
   deleteUser,
+  addFav
 }
 
 export default USerService

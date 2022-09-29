@@ -22,7 +22,7 @@ export default function addCategory() {
     axios
       .post('http://localhost:128/admin/addCategory', formData)
       .then(function (response) {
-        router.push('/accueil')
+        router.push('/')
       })
       .catch(function (error) {
         console.log(error)

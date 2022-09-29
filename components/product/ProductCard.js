@@ -3,15 +3,37 @@ import axios from 'axios'
 import Image from 'next/image'
 import a from '../../public/images/a.jpg'
 import Link from 'next/link'
-
 import React, { useState } from 'react'
+import { IoIosHeartEmpty } from "react-icons/io";
+import { IoIosHeart } from "react-icons/io";
+import  array  from 'react'
+import USerService from '../../services/USer_Service'
+import  { useEffect } from 'react'
 
 export default function ProductCard({ titre, prix, image, id }) {
-  const [favorite, setFavorite] = useState("false");
+  const [favorites, setFavorites] = useState([]  );
+  const [profile, setProfile] = useState([]  );
+  const [getToWish, setGetToWish] = useState([]  );
+
+  const [forites, setForites] = useState([]  );
 
   function GraphCMSImageLoader({ src }) {
     return `http://localhost:128/download/${src}`
   }
+
+
+
+  useEffect(() => {
+    USerService.getAllPrivatePosts().then(
+      (response) => {
+        setProfile(response.data.username)
+      },
+      (error) => {
+        console.log(error)
+      }
+    )
+  }, [])
+  
 
   return (
     <div className=" my-3  w-[280px] px-2 shadow-md">
@@ -43,11 +65,14 @@ export default function ProductCard({ titre, prix, image, id }) {
             Voir le produit
           </button> 
         </Link>
-
-        <button materialIcon="favorite" iconBefore={true} >Favorite</button>
-
-      </div>
-
+       <button className=" my-2 mx-4 flex justify-center rounded   bg-white-400 p-2 px-3 py-2 text-sm font-semibold text-white hover:bg-green-600   "
+        onClick={() =>  axios.post(`http://localhost:128/addToWishlist/${id}/${profile}`)}
+       >
+          <IoIosHeart
+          style={{color: 'red'}}
+          />
+        </button> 
+        </div>
     </div>
   )
 }

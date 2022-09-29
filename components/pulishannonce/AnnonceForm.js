@@ -1,12 +1,21 @@
 import React, { useState } from 'react'
 import Image from 'next/image.js'
 import FormRow from '../FormRow.js'
-
+import FormData from 'form-data'
+import axios from 'axios'
 import CheckBoxItem from '../CheckBoxItem'
 import { Formik, Field, Form } from 'formik'
 
 export default function AnnonceForm() {
+  const formData = new FormData()
+
   const [checked, setChecked] = useState(false)
+  const imgFilehandler = (e) => {
+    console.log('Image FIles', e.target.files[0])
+    if (e.target.files.length !== 0) {
+      formData.append('file', e.target.files[0])
+    }
+  }
   return (
     <div className="mt-10 mb-10 flex h-auto w-full flex-col items-center  justify-center rounded-xl bg-gray-50 shadow-xl shadow-slate-300 md:ml-10 md:w-[70%]">
       {/* <div className="relative flex h-12 w-12   md:h-16 md:w-32"> */}
@@ -50,23 +59,26 @@ export default function AnnonceForm() {
 
           return errors
         }}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 5))
-            setSubmitting(false)
-          }, 400)
+        onSubmit={(values) => {
+          const { nom, Prix, Description, category,souscategorie } = values
+
+          formData.append('type', type)
+          formData.append('titre  ', Prix)
+          formData.append('ville', Description)
+          formData.append('categorie', category)
+          formData.append('souscategorie', souscategorie )
+          formData.append(' owner', 'med ')
+          axios
+            .post('http://localhost:124/annance/add', formData)
+            .then(function (response) {
+              router.push('/accueil')
+            })
+            .catch(function (error) {
+              console.log(error)
+            })
         }}
       >
-        {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          isSubmitting,
-          /* and other goodies */
-        }) => (
+        => (
           <form onSubmit={handleSubmit} className="my-10 w-[90%] rounded-xl">
             <div className="flex flex-col space-y-5">
               <div>
@@ -142,7 +154,13 @@ export default function AnnonceForm() {
                 <p className="mr-4 mb-2  pb-2 text-sm font-medium text-slate-700 md:pb-0">
                   Photo
                 </p>{' '}
-                <input type="file" />
+                <input
+                 type="file"
+                 name="photo"
+                 onChange={imgFilehandler}
+                 onBlur={handleBlur}
+                 //value={values.photo}
+                 label="Photo" />
               </div>
               <button
                 type="submit"

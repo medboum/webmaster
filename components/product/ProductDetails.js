@@ -25,6 +25,7 @@ const ProductDetails = ({ data }) => {
   function GraphCMSImageLoader({ src }) {
     return `http://localhost:128/download/${src}`
   }
+  
   useEffect(() => {
     USerService.getAllPrivatePosts().then(
       (response) => {
@@ -42,7 +43,7 @@ const ProductDetails = ({ data }) => {
     axios
             .post('http://localhost:128/addToCart', formData)
             .then(function (response) {
-              router.push('/accueil')
+              router.push('/cart')
             })
             .catch(function (error) {
               console.log(error)
