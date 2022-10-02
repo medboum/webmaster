@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@Layer base {
+
+ 
+  @font-face {
+    font-family: 'Rubik';
+    src: url('../public/fonts/Rubik-Dirt-Regular.woff2') format('woff2');
+    font-weight:400;
+    font-display:swap;
+    font-style:normal
+  }
+  @font-face {
+    font-family: 'Teko';
+    src: url('../public/fonts/Teko-Regular.woff2') format('woff2');
+    font-weight:400;
+    font-display:swap;
+    font-style:normal
+  }
+  @font-face {
+    font-family: 'Bungee';
+    src: url('../public/fonts/Bungee-Shade.woff2') format('woff2');
+    font-weight:400;
+    font-display:swap;
+    font-style:normal
+  }}
+
+html,
+/* body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+} */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+
+}
+/* square buttons */
+.rec-arrow {
+    
+  min-width: 2rem !important;
+  line-height: 2rem !important;
+  color: green !important;
+  width: 2rem !important;
+  height: 2rem !important;
+  
+ 
+}
+/* round buttons on hover */
+.rec.rec-arrow {
+    border-radius: 50%;
+    color:#D40017;
+    background-color: white;
+}
+.rec.rec-arrow:hover {
+  background-color: white;
+  color: #D40017;
+}
+/* hide disabled buttons */
+.rec.rec-arrow:disabled {
+    visibility: hidden;
+}
+
+.rec-dot_active:false {
+  background-color: var(--blue) !important;
+  box-shadow: 0 0 1px 3px var(--blue) !important;
+}
+.rec-dot_active {
+  color: #24de14;
+  background-color: #24de14 !important;
+  box-shadow:#24de14;
+}
+button.rec-dot{
+  background-color: white;
+  box-shadow:#24de14;
+}
+
+/* disable default outline on focused items */
+/* add custom outline on focused items */
+.rec-carousel-item:focus {
+ color: #D40017;
+ box-shadow: #D40017;
+ background-color: #D40017;
+}
+
+button.rec-dot:focus{
+  color:#D40017;
+}
