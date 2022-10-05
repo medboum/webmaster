@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image.js'
 import DropDown from '../DropDown.js'
-
 import {
   SearchIcon,
   PlusCircleIcon,
@@ -34,7 +33,6 @@ export default function Header({ isAdmin }) {
   // }, [])
 
   const [role, setRole] = useState([])
-  const [numb, setNumb] = useState([])
 
   // Get the authenticated user role
   useEffect(() => {
@@ -43,17 +41,6 @@ export default function Header({ isAdmin }) {
       // console.log('role ' + role)
     })
   }, [role])
-  useEffect(() => {
-    USerService.getMyCart().then(
-      (response) => {
-        setNumb(response.data.itemsNumber)
-       
-      },
-      (error) => {
-        console.log(error)
-      }
-    )
-  }, [])
 
   return (
     <>
@@ -79,17 +66,14 @@ export default function Header({ isAdmin }) {
                   <div className="relative mt-1  cursor-pointer rounded-full  hover:text-green-600">
                     {' '}
                     <HeaderOption
-                      href="/"
-                      text="Home"
+                      href="/accueil"
+                      text="Accueil"
                       Icon={HomeIcon}
                     />
                   </div>
 
                   {role === 'USER' ? (
                     <>
-                      <DropDown />
-                      
-                      
                       <div className="relative mx-8  mt-1 cursor-pointer hover:text-green-600">
                         <HeaderOption
                           href="/account/profil"
@@ -99,14 +83,12 @@ export default function Header({ isAdmin }) {
                       </div>{' '}
                       <UserOptions />
                       <div className="relative mx-8  mt-1 cursor-pointer hover:text-green-600">
-                      {numb}
                         <HeaderOption
                           href="/cart"
                           text="panier"
                           Icon={ShoppingCartIcon}
                         />
-                      </div>
-                      
+                      </div>{' '}
                       <div className="relative   mt-1 cursor-pointer hover:text-green-600">
                         <HeaderOption
                           href="/addproduct"

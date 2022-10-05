@@ -19,6 +19,7 @@ import UserService from '../services/User_Service.js'
 import axios from 'axios'
 import authHeader from '../services/auth_Header.js'
 import AnnonceSlider from '../components/accueil/AnnoncesSlider.js'
+import Tabs from '../components/Tabs.js'
 
 export default function Home() {
   const count = useSelector((state) => state.counter.value)
@@ -40,7 +41,8 @@ export default function Home() {
       <AnnonceSlider />
 
       <Categories />
-      <Selected />
+      {/* <Selected /> */}
+      <Tabs />
       <Slide />
     </div>
   )
