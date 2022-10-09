@@ -18,8 +18,8 @@ import axios from 'axios'
 import authHeader from '../services/auth_Header.js'
 
 export default function Home() {
-  const count = useSelector((state) => state.counter.value)
-  const dispatch = useDispatch()
+  // const count = useSelector((state) => state.counter.value)
+  // const dispatch = useDispatch()
 
   const user = JSON.stringify(
     axios.get('http://localhost:128/getRoleUser', {

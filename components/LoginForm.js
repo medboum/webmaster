@@ -7,19 +7,26 @@ import { Redirect } from 'react-router-dom'
 import { useRouter } from 'next/router'
 import { AuthService } from '../services/auth_service'
 import UserService from '../services/User_Service'
+import { useDispatch } from 'react-redux'
+import { setUser } from '../slices/userSlice'
 
 export default function LoginForm() {
   const router = useRouter()
 
+  const dispatch = useDispatch()
   const [role, setRole] = useState([])
 
-  // Get the authenticated user role
   useEffect(() => {
-    UserService.getRole().then((response) => {
-      setRole(response.data)
-      console.log('role ' + role)
-    })
-  }, [])
+    dispatch(setUser())
+  })
+
+  // Get the authenticated user role
+  // useEffect(() => {
+  //   UserService.getRole().then((response) => {
+  //     setRole(response.data)
+  //     console.log('role ' + role)
+  //   })
+  // }, [])
 
   return (
     <div className="mt-24 mb-10 flex h-auto  w-full flex-col items-center justify-center rounded-xl border-b-4  border-t-4 border-amber-400 bg-white shadow-xl shadow-slate-300 md:w-full">
@@ -54,8 +61,8 @@ export default function LoginForm() {
               password: password,
             })
             .then(function (response) {
-              AuthService.setUserData(response.data)
-              role === 'USER'
+              dispatch(setUser(response.data)) &&
+              response.data.role === '[USER]'
                 ? router.push('/accueil')
                 : router.push('/admin/users')
             })

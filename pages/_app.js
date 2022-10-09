@@ -15,20 +15,21 @@ function MyApp({ Component, pageProps }) {
   ) {
     return (
       <>
-        <Header />
-        <Layout>
-          <Provider store={store}>
+        <Provider store={store}>
+          <Header />
+          <Layout>
             <Component {...pageProps} />
-          </Provider>
-        </Layout>
+          </Layout>{' '}
+        </Provider>
         <Footer />
       </>
     )
   }
   return (
     <>
-      <Header />
       <Provider store={store}>
+        <Header />
+
         <Component {...pageProps} />
       </Provider>
       <Footer />

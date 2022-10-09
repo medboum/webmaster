@@ -9,13 +9,16 @@ import { useRouter } from 'next/router'
 import { AuthService } from '../services/auth_service'
 import { CogIcon } from '@heroicons/react/outline'
 import Link from 'next/link'
+import { useDispatch } from 'react-redux'
+import { removeUser } from '../slices/userSlice'
 
 export default function UserOptions() {
   const router = useRouter()
 
+  const dispatch = useDispatch()
   const handleLogout = () => {
-    AuthService.deleteUserData()
-    router.push('/login')
+    dispatch(removeUser())
+    router.push('/')
   }
 
   return (

@@ -17,10 +17,14 @@ import {
 import Footer from '../components/layout/Footer'
 import USerService from '../services/User_Service'
 import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { removeUser } from '../slices/userSlice'
 
 export default function SideNav() {
   const router = useRouter()
   const [user, setUser] = useState([])
+
+  const dispatch = useDispatch()
 
   // Get the authenticated user role
   useEffect(() => {
@@ -209,7 +213,9 @@ export default function SideNav() {
                   <li className="m-2 w-full">
                     <Link href="/">
                       <a
-                        onClick={() => deleteUserData()}
+                        onClick={() => {
+                          dispatch(removeUser()) && router.push('/login')
+                        }}
                         className={`flex w-full cursor-pointer rounded p-2 text-[14px] tracking-wide  text-gray-600 shadow-md  ${
                           router.asPath === '/' &&
                           'bg-gray-300 font-bold text-black shadow-md'

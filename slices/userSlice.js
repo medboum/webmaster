@@ -1,21 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-
 const initialState = {
-  user: [],
+  userRole: '',
 }
 
 export const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    getUser: (state) => {
-      state.user = 
-    }
+    setUser: (state, action) => {
+      state.userRole = action.payload
+    },
+    removeUser: (state) => {
+      state.userRole = ''
+    },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { increment, decrement } = counterSlice.actions
-
-export default counterSlice.reducer
+export const { setUser, removeUser } = userSlice.actions
+export default userSlice.reducer
